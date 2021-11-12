@@ -1,4 +1,5 @@
 :root {
+    --header:#f1471c;
     --primary: #0052cc;
     --primary-hover: #0263f5;
     --primary-color: #ffffff;
@@ -8,6 +9,19 @@
     --danger: #de350b;
     --danger-hover: #e2532f;
     --danger-color: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--header);
 }
 
 .modal {

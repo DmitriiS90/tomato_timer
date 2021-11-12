@@ -1,0 +1,1 @@
+// document.querySelector("#singUpButton").addEventListener('click', ()=>{window.location.replace('login.html')})
