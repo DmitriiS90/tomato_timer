@@ -134,3 +134,11 @@ header {
 .button--danger:hover {
     background: var(--danger-hover);
 }
+
+.list-item{
+    list-style-type: none;
+}
+
+.finish {
+    background-color: #fabc40;
+}

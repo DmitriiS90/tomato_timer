@@ -35,6 +35,14 @@ class Timer {
         this.resetVariables(25, 0, true);
     }
 
+    // static startShortBreak() {
+    //     this.resetVariables(5, 0, true);
+    // }
+
+    // static startLongBreak() {
+    //     this.resetVariables(15, 0, true);
+    // }
+
     static stopTimer() {
         this.resetVariables(25, 0, false);
         this.updateDom();
@@ -46,7 +54,7 @@ class Timer {
         }
         return num;
     }
-    
+
     static updateDom() {
         this.minutesSelector.innerHTML = this.toDoubleDigit(this.minutes);
         this.secondsSelector.innerHTML = this.toDoubleDigit(this.seconds);
@@ -66,10 +74,45 @@ class Timer {
         }
         this.updateDom();
     }
-    
+
     static timerComplete() {
         this.started = false;
     }
 }
 
+class TodoList {
+    submitButton = document.querySelector("#submitButton")
+    cancelButton = document.querySelector("#cancelButton")
+
+    static init() {
+        submitButton.addEventListener("click", this.addItem)
+    }
+
+    static addItem() {
+        const value = document.querySelector(".todo-list__form input").value
+        const list = document.querySelectorAll(".todo-list__items li")
+        // console.log(list.length)
+        
+        const listItems = document.querySelector(".todo-list__items")
+        const element = `<li class="list-item" id=${list.length}>
+                            <span>
+                                 ${value}
+                             </span>
+                             <button onclick="TodoList.finishTask(${list.length})" class="button button--primary">выполнить</button>
+                             <button onclick="TodoList.removeItem(${list.length})" class="button button--danger">отменить</button>
+                         </li>`
+        listItems.insertAdjacentHTML('beforeEnd', element)
+    }
+
+    static removeItem(id){
+        const removeItem = document.getElementById(id)
+        removeItem.remove()
+    }
+    static finishTask(id){
+        const task = document.getElementById(id)
+        task.classList.toggle('finish', true);
+    }
+}
+
 Timer.start();
+TodoList.init();
