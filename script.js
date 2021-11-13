@@ -1,5 +1,3 @@
-// document.querySelector("#singUpButton").addEventListener('click', ()=>{window.location.replace('login.html')})
-
 class Timer {
     constructor() {
         this.started = false;
@@ -34,14 +32,6 @@ class Timer {
     static launchTimer() {
         this.resetVariables(25, 0, true);
     }
-
-    // static startShortBreak() {
-    //     this.resetVariables(5, 0, true);
-    // }
-
-    // static startLongBreak() {
-    //     this.resetVariables(15, 0, true);
-    // }
 
     static stopTimer() {
         this.resetVariables(25, 0, false);
@@ -91,7 +81,6 @@ class TodoList {
     static addItem() {
         const value = document.querySelector(".todo-list__form input").value
         const list = document.querySelectorAll(".todo-list__items li")
-        // console.log(list.length)
         
         const listItems = document.querySelector(".todo-list__items")
         const element = `<li class="list-item" id=${list.length}>
