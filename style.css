@@ -24,6 +24,27 @@ header {
     background-color: var(--header);
 }
 
+.timer{
+    margin: 50px auto;
+    text-align: center;
+    width: 50%;
+    border:#ffab00 2px solid;
+    border-radius: 5px;
+}
+
+.timer .time {
+    padding: 100px 0;
+    font-size: 70px;
+}
+
+.todo-list{
+    margin: 50px auto;
+    text-align: center;
+    width: 50%;
+    border:#ffab00 2px solid;
+    border-radius: 5px;
+}
+
 .modal {
     position: fixed;
     z-index: 1;
