@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOMATO-TIMER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">TOMATO-TIMER</div>
+        <div class="header__button">
+            <a href="login.html">
+                <button class="button button--warning" id="singUpButton">
+                    Sign Up
+                </button>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="timer">
+            <div class="time">
+                <span id="minutes">25</span>
+                <span id="points">:</span>
+                <span id="seconds">00</span>
+            </div>
+            <div class="timer-controls">
+                <button class="button button--primary" id="start">СТАРТ</button>
+                <button class="button button--danger" id="stop">СТОП</button>
+            </div>
+        </div>
+        <div class="todo-list">
+            <div class="todo-list__form">
+                <input class="input" type="text" placeholder="Добавить задачу">
+                <button id="submitButton" class="button button--warning">+</button>
+            </div>
+    
+            <ul class="todo-list__items">
+                <li class="list-item">
+                    нет задач
+                </li>
+            </ul>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
