@@ -84,11 +84,14 @@ class TodoList {
         
         const listItems = document.querySelector(".todo-list__items")
         const element = `<li class="list-item" id=${list.length}>
-                            <span>
+                            <button class="button button--primary">?</button>
+                            <span class="todo-list__task" id="task_${list.length}">
                                  ${value}
                              </span>
-                             <button onclick="TodoList.finishTask(${list.length})" class="button button--primary">выполнить</button>
-                             <button onclick="TodoList.removeItem(${list.length})" class="button button--danger">отменить</button>
+                             <input class="display-none" id="edit_${list.length}" />
+                             <button onclick="TodoList.finishTask(${list.length})" class="button button--primary">+</button>
+                             <button onclick="TodoList.removeItem(${list.length})" class="button button--danger">X</button>
+                             <button onclick="TodoList.editTask(${list.length})" class="button button--danger">редактировать</button>
                          </li>`
         listItems.insertAdjacentHTML('beforeEnd', element)
     }
@@ -100,6 +103,15 @@ class TodoList {
     static finishTask(id){
         const task = document.getElementById(id)
         task.classList.toggle('finish', true);
+    }
+    
+    static editTask(id){
+        const oldTask = document.querySelector(`#task_${id}`);
+        const newTask = document.querySelector(`#edit_${id}`);
+        oldTask.classList.toggle('display-none');
+        newTask.classList.toggle('display-none');
+        oldTask.innerHTML = newTask.value;
+        
     }
 }
 
