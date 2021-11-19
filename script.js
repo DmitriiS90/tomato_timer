@@ -81,17 +81,18 @@ class TodoList {
     static addItem() {
         const value = document.querySelector(".todo-list__form input").value
         const list = document.querySelectorAll(".todo-list__items li")
-        
+        const id = list.length
         const listItems = document.querySelector(".todo-list__items")
-        const element = `<li class="list-item" id=${list.length}>
-                            <button class="button button--primary">?</button>
-                            <span class="todo-list__task" id="task_${list.length}">
+        const element = `<li class="list-item" id=${id}>
+                            <textarea class="display-none" id="text_${id}" placeholder="Описание задачи"></textarea>
+                            <button onclick="TodoList.setDescription(${id})" class="button button--primary">?</button>
+                            <span class="todo-list__task" id="task_${id}">
                                  ${value}
                              </span>
-                             <input class="display-none" id="edit_${list.length}" />
-                             <button onclick="TodoList.finishTask(${list.length})" class="button button--primary">+</button>
-                             <button onclick="TodoList.removeItem(${list.length})" class="button button--danger">X</button>
-                             <button onclick="TodoList.editTask(${list.length})" class="button button--danger">редактировать</button>
+                             <input class="display-none" id="edit_${id}" />
+                             <button onclick="TodoList.finishTask(${id})" class="button button--primary">+</button>
+                             <button onclick="TodoList.removeItem(${id})" class="button button--danger">X</button>
+                             <button onclick="TodoList.editTask(${id})" class="button button--danger">редактировать</button>
                          </li>`
         listItems.insertAdjacentHTML('beforeEnd', element)
     }
@@ -111,7 +112,10 @@ class TodoList {
         oldTask.classList.toggle('display-none');
         newTask.classList.toggle('display-none');
         oldTask.innerHTML = newTask.value;
-        
+    }
+    static setDescription(id){
+        const description = document.querySelector(`#text_${id}`);
+        description.classList.toggle('display-none');
     }
 }
 
