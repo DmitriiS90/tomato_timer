@@ -27,6 +27,9 @@ class Timer {
         document.querySelector('#stop').onclick = function () {
             self.stopTimer.apply(self);
         };
+        document.querySelector('#sound').onclick = function () {
+            self.setAudio.apply(self);
+        };
     }
 
     static resetVariables(mins, secs, started) {
@@ -85,6 +88,13 @@ class Timer {
 
     static timerComplete() {
         this.started = false;
+        Timer.setAudio();
+    }
+    
+    static setAudio() {
+        const audio = new Audio();
+        audio.src = 'audio/audio.mp3'; 
+        audio.autoplay = true; 
     }
 }
 
