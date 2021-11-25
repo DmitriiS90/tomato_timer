@@ -18,6 +18,12 @@ class Timer {
         document.querySelector('#start').onclick = function () {
             self.launchTimer.apply(self);
         };
+        document.querySelector('#break_5').onclick = function () {
+            self.launchShortBreak.apply(self);
+        };
+        document.querySelector('#break_15').onclick = function () {
+            self.launchLongBreak.apply(self);
+        };
         document.querySelector('#stop').onclick = function () {
             self.stopTimer.apply(self);
         };
@@ -35,7 +41,15 @@ class Timer {
 
     static stopTimer() {
         this.resetVariables(25, 0, false);
-        this.updateDom();
+        this.update();
+    }
+
+    static launchShortBreak() {
+        this.resetVariables(5, 0, true);
+    }
+
+    static launchLongBreak() {
+        this.resetVariables(15, 0, true);
     }
 
     static toDoubleDigit(num) {
@@ -45,13 +59,16 @@ class Timer {
         return num;
     }
 
-    static updateDom() {
+    static update() {
         this.minutesSelector.innerHTML = this.toDoubleDigit(this.minutes);
         this.secondsSelector.innerHTML = this.toDoubleDigit(this.seconds);
     }
 
     static intervalCallback() {
-        if (!this.started) return false;
+        if (!this.started) {
+            return false;
+        }
+
         if (this.seconds == 0) {
             if (this.minutes == 0) {
                 this.timerComplete();
@@ -62,11 +79,19 @@ class Timer {
         } else {
             this.seconds--;
         }
-        this.updateDom();
+
+        this.update();
     }
 
     static timerComplete() {
         this.started = false;
+        Timer.setAudio();
+    }
+    
+    static setAudio() {
+        const audio = new Audio();
+        audio.src = '../audio/audio.mp3'; 
+        audio.autoplay = true; 
     }
 }
 
@@ -81,25 +106,41 @@ class TodoList {
     static addItem() {
         const value = document.querySelector(".todo-list__form input").value
         const list = document.querySelectorAll(".todo-list__items li")
-        
+        const id = list.length
         const listItems = document.querySelector(".todo-list__items")
-        const element = `<li class="list-item" id=${list.length}>
-                            <span>
+        const element = `<li class="list-item" id=${id}>
+                            <textarea class="display-none" id="text_${id}" placeholder="Описание задачи"></textarea>
+                            <button onclick="TodoList.setDescription(${id})" class="button button--primary">?</button>
+                            <span class="todo-list__task" id="task_${id}">
                                  ${value}
                              </span>
-                             <button onclick="TodoList.finishTask(${list.length})" class="button button--primary">выполнить</button>
-                             <button onclick="TodoList.removeItem(${list.length})" class="button button--danger">отменить</button>
+                             <input class="display-none" id="edit_${id}" />
+                             <button onclick="TodoList.finishTask(${id})" class="button button--primary">+</button>
+                             <button onclick="TodoList.removeItem(${id})" class="button button--danger">X</button>
+                             <button onclick="TodoList.editTask(${id})" class="button button--danger">редактировать</button>
                          </li>`
         listItems.insertAdjacentHTML('beforeEnd', element)
     }
 
-    static removeItem(id){
+    static removeItem(id) {
         const removeItem = document.getElementById(id)
         removeItem.remove()
     }
-    static finishTask(id){
+    static finishTask(id) {
         const task = document.getElementById(id)
         task.classList.toggle('finish', true);
+    }
+
+    static editTask(id) {
+        const oldTask = document.querySelector(`#task_${id}`);
+        const newTask = document.querySelector(`#edit_${id}`);
+        oldTask.classList.toggle('display-none');
+        newTask.classList.toggle('display-none');
+        oldTask.innerHTML = newTask.value;
+    }
+    static setDescription(id) {
+        const description = document.querySelector(`#text_${id}`);
+        description.classList.toggle('display-none');
     }
 }
 
