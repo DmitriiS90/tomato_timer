@@ -6,6 +6,7 @@ class Timer {
         this.minutesSelector = null;
         this.secondsSelector = null;
         this.interval = null;
+        this.rounds = 1;
     }
 
     static start() {
@@ -26,6 +27,9 @@ class Timer {
         };
         document.querySelector('#stop').onclick = function () {
             self.stopTimer.apply(self);
+        };
+        document.querySelector('#roundButton').onclick = function () {
+            self.changeRound.apply(self);
         };
     }
 
@@ -71,11 +75,18 @@ class Timer {
 
         if (this.seconds == 0) {
             if (this.minutes == 0) {
-                this.timerComplete();
-                return;
+                this.rounds--;
+                if (this.rounds < 1) {
+                    this.timerComplete();
+                    return;
+                }
             }
-            this.seconds = 59;
-            this.minutes--;
+            if(this.rounds > 0) {
+                this.launchTimer()
+            } else {
+                this.seconds = 59;
+                this.minutes--;
+            }
         } else {
             this.seconds--;
         }
@@ -87,11 +98,16 @@ class Timer {
         this.started = false;
         Timer.setAudio();
     }
-    
+
     static setAudio() {
         const audio = new Audio();
-        audio.src = '../audio/audio.mp3'; 
-        audio.autoplay = true; 
+        audio.src = '../audio/audio.mp3';
+        audio.autoplay = true;
+    }
+
+    static changeRound() {
+        this.rounds = document.querySelector('#round').value;
+        console.log(this.rounds)
     }
 }
 

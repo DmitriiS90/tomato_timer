@@ -1,5 +1,5 @@
 :root {
-    --header:#f1471c;
+    --header: #f1471c;
     --primary: #0052cc;
     --primary-hover: #0263f5;
     --primary-color: #ffffff;
@@ -24,7 +24,7 @@ header {
     background-color: var(--header);
 }
 
-.timer{
+.timer {
     margin: 45px auto;
     text-align: center;
     width: 50%;
@@ -33,13 +33,14 @@ header {
 .timer .time {
     padding: 100px 0;
     font-size: 70px;
-    border:#ffab00 2px solid;
+    border: #ffab00 2px solid;
     border-radius: 5px;
 }
+
 .timer .timer-controls {
     margin-top: 50px;
     padding: 10px;
-    border:#ffab00 2px solid;
+    border: #ffab00 2px solid;
     border-radius: 5px;
 }
 
@@ -47,43 +48,43 @@ header {
     margin: 0 auto;
     text-align: center;
     width: 50%;
-    border:#ffab00 2px solid;
+    border: #ffab00 2px solid;
     border-radius: 5px;
 }
 
-.todo-list__items{
+.todo-list__items {
     padding: 0;
     margin-top: 20px;
 }
 
-.todo-list__task{
+.todo-list__task {
     width: 60%;
     background-color: #c6cece;
     border-radius: 5px;
     padding-top: 8px;
 }
 
-.list-item{
+.list-item {
     display: flex;
     justify-content: space-around;
     list-style-type: none;
     border-radius: 10px;
-    margin:5px 0;
+    margin: 5px 0;
     padding: 0 50px;
 }
 
-.list-item input{
+.list-item input {
     width: 60%;
     background-color: #c6cece;
     border-radius: 5px;
-    padding-left:5% ;
+    padding-left: 5%;
 }
 
 .finish {
     background-color: #fabc40;
 }
 
-.display-none{
+.display-none {
     display: none;
 }
 
